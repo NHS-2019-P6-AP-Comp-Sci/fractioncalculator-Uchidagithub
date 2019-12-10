@@ -56,17 +56,29 @@ public class FracCalc {
 		} else if (operation.equals("/")) {
 			answer = devision(numerator1, denominator1, numerator2, denominator2);
 		}
-		/* int ansNum = numerator(answer);
+		int ansNum = numerator(answer);
 		int ansDen = denominator(answer);
 		int ansWhole = ansNum / ansDen;
 		int finalNum = ansNum % ansDen;
-		while ()
-		for (i = ansDen; i > 1; i--) {
-			if (finalNum % i == 0 && ansDen % i == 0) {
+		for (i = 2; i <= ansDen; i++) {
+			while (finalNum % i == 0 && ansDen % i == 0) {
 				finalNum /= i;
 				ansDen /= i;
 			}
-		}*/
+		}
+		if (finalNum == 0 || finalNum == ansDen) {
+			answer = ansWhole + "";
+		} else if (ansWhole == 0) {
+			answer = finalNum + "/" + ansDen;
+		} else {
+			if (ansWhole < 0) {
+				finalNum *= -1;
+			}
+			if (ansDen < 0) {
+				ansDen *= -1;
+			}
+			answer = ansWhole + "_" + finalNum + "/" + ansDen;
+		}
 		return answer;
 	}
 
@@ -130,6 +142,10 @@ public class FracCalc {
 	public static String devision(int num1, int den1, int num2, int den2) {
 		int newDen = den1 * num2;
 		int newNum = num1 * den2;
+		if (newDen < 0) {
+			newDen *= -1;
+			newNum *= -1;
+		}
 		String answer = newNum + "/" + newDen;
 		return answer;
 	}
